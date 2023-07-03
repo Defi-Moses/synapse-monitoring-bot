@@ -1,7 +1,7 @@
 import logging
 from telegram import Update
 from telegram.ext import ApplicationBuilder, ContextTypes, CommandHandler
-from main import checkGasBalancesTest
+from main import checkGasBalances, checkMiniChefBalances
 
 
 logging.basicConfig(
@@ -13,7 +13,10 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
     await context.bot.send_message(chat_id=update.effective_chat.id, text="I'm a bot, please talk to me!")
 
 async def balance(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    await context.bot.send_message(chat_id=update.effective_chat.id, text=checkGasBalancesTest())
+    await context.bot.send_message(chat_id=update.effective_chat.id, text=checkGasBalances())
+
+async def rewards(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    await context.bot.send_message(chat_id=update.effective_chat.id, text=checkMiniChefBalances())
 
 if __name__ == '__main__':
     application = ApplicationBuilder().token('6238485166:AAHY3jVaTFFi4uBa5j5ZD58IyGygsYkeD44').build()
@@ -22,6 +25,9 @@ if __name__ == '__main__':
     application.add_handler(start_handler)
 
     gasBalance_handler = CommandHandler('balance', balance)
+    application.add_handler(gasBalance_handler)
+
+    minichefBalance_handler = CommandHandler('rewards', rewards)
     application.add_handler(gasBalance_handler)
     
     application.run_polling()
