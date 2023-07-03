@@ -84,54 +84,8 @@ def checkMiniChefBalances():
             #old logic (for debugging)
             # print(f"Error occurred for {chain} chain: {e}")
 
-    print(output)
+    # print(output)
     return output
-
-
-checkMiniChefBalances()
-
-
-
-
-
-
-# def checkGasBalancesTest():
-#     gas_low = []
-#     gas_extremely_low = []
-    
-#     # Iterate over each chain
-#     for chain in chains:
-#         w3 = Web3(Web3.HTTPProvider(chains[chain]['url']))  # Connect to the chain
-        
-#         # Ensure that we are connected
-#         if not w3.is_connected():
-#             print(f"Could not connect to the {chain} network.")
-#             continue
-
-#         contract_address = chains[chain]['address']
-#         contract = w3.eth.contract(address=contract_address, abi=contract_abi)
-#         gas_amount = contract.functions.getBalance(contract_address).call()
-#         print(gas_amount)
-        
-    #     x = 1000  # Replace with your "low gas" threshold
-    #     y = 500   # Replace with your "extremely low gas" threshold
-        
-    #     if gas_amount < x:
-    #         gas_low.append(chain)
-    #     elif gas_amount < y:
-    #         gas_extremely_low.append(chain)
-
-    # if len(gas_low) == 0 and len(gas_extremely_low) == 0:
-    #     print("Gas balances are all topped up.")
-    # else:
-    #     print("Gas balances:")
-    #     for chain in gas_low:
-    #         print(f"Gas balance for {chain} chain is low.")
-    #     for chain in gas_extremely_low:
-    #         print(f"Gas balance for {chain} chain is extremely low.")
-
-
-
 
 
 

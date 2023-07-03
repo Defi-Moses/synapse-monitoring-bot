@@ -28,6 +28,6 @@ if __name__ == '__main__':
     application.add_handler(gasBalance_handler)
 
     minichefBalance_handler = CommandHandler('rewards', rewards)
-    application.add_handler(gasBalance_handler)
+    application.add_handler(minichefBalance_handler)
     
     application.run_polling()
