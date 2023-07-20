@@ -21,7 +21,7 @@ async def rewards(update: Update, context: ContextTypes.DEFAULT_TYPE):
 async def executor(update: Update, context: ContextTypes.DEFAULT_TYPE):
     await context.bot.send_message(chat_id=update.effective_chat.id, text=checkExecutorBalances())
 
-async def cctpGas(update: Update, context: ContextTypes.DEFAULT_TYPE):
+async def cctp(update: Update, context: ContextTypes.DEFAULT_TYPE):
     await context.bot.send_message(chat_id=update.effective_chat.id, text=checkCctpBalances())
 
 
@@ -40,7 +40,7 @@ if __name__ == '__main__':
     executorBalance_handler = CommandHandler('executor', executor)
     application.add_handler(executorBalance_handler)
 
-    executorBalance_handler = CommandHandler('cctpGas', executor)
-    application.add_handler(executorBalance_handler)
+    cctpBalance_handler = CommandHandler('cctp', cctp)
+    application.add_handler(cctpBalance_handler)
     
     application.run_polling()
