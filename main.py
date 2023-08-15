@@ -156,4 +156,4 @@ def checkCirculatingSupply():
         totalSupply += chainSupply
 
     # print(output)
-    return output
+    return f"Total SYN circulating supply on 19 Chains {totalSupply}"
