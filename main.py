@@ -156,4 +156,4 @@ def checkCirculatingSupply():
         totalSupply += chainSupply
 
     # print(output)
-    return output,totalSupply
+    return output
