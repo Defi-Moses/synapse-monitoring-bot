@@ -135,11 +135,11 @@ def checkCirculatingSupply():
         syn_address = chains[chain]['syn']
 
         try:
-            data ='0x18160ddd' + contract_address[2:].zfill(64)
+            data ='0x18160ddd' + syn_address[2:].zfill(64)
             response = make_rpc_request(rpc_url, "eth_call", [{"to": syn_address, "data":data}, "latest"])
             chainSupply = round(int(response["result"],16)/(10**18),2)
-            miniChef_info = f"SYN balance on {chain}: {chainSupply} \n"
-            output += miniChef_info  # Append the miniChef info to the output string
+            supply_info = f"SYN balance on {chain}: {chainSupply} \n"
+            output += supply_info  # Append the miniChef info to the output string
 
             #old logic (for debugging)
             # print(f"Gas amount for {chain} chain: {gas_amount}")
@@ -156,4 +156,4 @@ def checkCirculatingSupply():
         totalSupply += chainSupply
 
     # print(output)
-    return output, print("Total Circulating Supply on 19 chains is:" ,totalSupply)
+    return output,totalSupply
