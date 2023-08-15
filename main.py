@@ -120,3 +120,40 @@ def checkExecutorBalances():
 
     # print(output)
     return output
+
+def checkCirculatingSupply():
+    #Infra so that we can notify when miniChef balances are low 
+    miniChef_low = []
+    miniChef_extremely_low = []
+    results = []
+    output = ""
+    totalSupply = 0
+    # Iterate over each chain
+    for chain in chains:
+        rpc_url = chains[chain]['url']
+        contract_address = chains[chain]['minichef']
+        syn_address = chains[chain]['syn']
+
+        try:
+            data ='0x18160ddd' + contract_address[2:].zfill(64)
+            response = make_rpc_request(rpc_url, "eth_call", [{"to": syn_address, "data":data}, "latest"])
+            chainSupply = round(int(response["result"],16)/(10**18),2)
+            totalSupply += chainSupply
+            miniChef_info = f"SYN balance on {chain}: {chainSupply} \n"
+            output += miniChef_info  # Append the miniChef info to the output string
+
+            #old logic (for debugging)
+            # print(f"Gas amount for {chain} chain: {gas_amount}")
+            # results.append({
+            #     'chain': chain,
+            #     'gas_amount': gas_amount
+            # })
+        except Exception as e:
+            error_info = f"Error occurred on {chain} : {e}\n"
+            output += error_info  # Append the error info to the output string
+
+            #old logic (for debugging)
+            # print(f"Error occurred for {chain} chain: {e}")
+
+    # print(output)
+    return output, totalSupply
