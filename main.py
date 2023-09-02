@@ -167,27 +167,28 @@ def checkCCTPBalances():
     output = ""
     # Iterate over each chain
     for chain in chains:
-        rpc_url = chains[chain]['url']
-        contract_address = chains[chain]['cctp']
+        if chains[chain]['cctp'] is not None:
+            rpc_url = chains[chain]['url']
+            contract_address = chains[chain]['cctp']
 
-        try:
-            response = make_rpc_request(rpc_url, "eth_getBalance", [contract_address, "latest"])
-            gas_amount = round(int(response["result"], 16)/(10**18),2)
-            gas_info = f"CCTP Relayer Gas on {chain}: {gas_amount}\n"
-            output += gas_info  # Append the gas info to the output string
+            try:
+                response = make_rpc_request(rpc_url, "eth_getBalance", [contract_address, "latest"])
+                gas_amount = round(int(response["result"], 16)/(10**18),2)
+                gas_info = f"CCTP Relayer Gas on {chain}: {gas_amount}\n"
+                output += gas_info  # Append the gas info to the output string
 
-            #old logic (for debugging)
-            # print(f"Gas amount for {chain} chain: {gas_amount}")
-            # results.append({
-            #     'chain': chain,
-            #     'gas_amount': gas_amount
-            # })
-        except Exception as e:
-            error_info = f"Error occurred for {chain} chain: {e}\n"
-            output += error_info  # Append the error info to the output string
+                #old logic (for debugging)
+                # print(f"Gas amount for {chain} chain: {gas_amount}")
+                # results.append({
+                #     'chain': chain,
+                #     'gas_amount': gas_amount
+                # })
+            except Exception as e:
+                error_info = f"Error occurred for {chain} chain: {e}\n"
+                output += error_info  # Append the error info to the output string
 
-            #old logic (for debugging)
-            # print(f"Error occurred for {chain} chain: {e}")
+                #old logic (for debugging)
+                # print(f"Error occurred for {chain} chain: {e}")
 
-    # print(output)
-    return output
+        # print(output)
+        return output
