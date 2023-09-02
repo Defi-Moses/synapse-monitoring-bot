@@ -184,8 +184,9 @@ def checkCCTPBalances():
                 #     'gas_amount': gas_amount
                 # })
             except Exception as e:
-                error_info = f"Error occurred for {chain} chain: {e}\n"
-                output += error_info  # Append the error info to the output string
+                # error_info = f"Error occurred for {chain} chain: {e}\n"
+                # output += error_info  # Append the error info to the output string
+                continue
 
                 #old logic (for debugging)
                 # print(f"Error occurred for {chain} chain: {e}")
