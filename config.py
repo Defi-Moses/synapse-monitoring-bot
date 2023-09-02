@@ -19,7 +19,7 @@ chains = {
     'moonriver': {'url': 'https://rpc.omnirpc.io/confirmations/1/rpc/1285', 'bridge': '0xaeD5b25BE1c3163c907a471082640450F928DDFE', 'minichef': '', 'syn': '0xd80d8688b02B3FD3afb81cDb124F188BB5aD0445',  'cctp': ''},
     'moonbeam': {'url': 'https://rpc.api.moonbeam.network', 'bridge': '0x84A420459cd31C3c34583F67E0f0fB191067D32f', 'minichef': '', 'syn': '0xF44938b0125A6662f9536281aD2CD6c499F22004',  'cctp': ''},
     'optimism': {'url': 'https://mainnet.optimism.io', 'bridge': '0xAf41a65F786339e7911F4acDAD6BD49426F2Dc6b', 'minichef': '0xe8c610fcb63A4974F02Da52f0B4523937012Aaa0', 'syn': '0x5A5fFf6F753d7C11A56A52FE47a177a87e431655',  'cctp':'0x0a1e1d0eb6a1cef79e46f0e2d35b7bf2e958a26a'},
-    'polygon': {'url': 'https://rpc.omnirpc.io/confirmations/1/rpc/137', 'bridge': '0x8F5BBB2BB8c2Ee94639E55d5F41de9b4839C1280', 'minichef': '0x7875Af1a6878bdA1C129a4e2356A3fD040418Be5', 'syn': '0xf8f9efc0db77d8881500bb06ff5d6abc3070e695',  'cctp': '0x0a1e1d0eb6a1cef79e46f0e2d35b7bf2e958a26a'}
+    'polygon': {'url': 'https://rpc.omnirpc.io/confirmations/1/rpc/137', 'bridge': '0x8F5BBB2BB8c2Ee94639E55d5F41de9b4839C1280', 'minichef': '0x7875Af1a6878bdA1C129a4e2356A3fD040418Be5', 'syn': '0xf8f9efc0db77d8881500bb06ff5d6abc3070e695',  'cctp': ''}
 }
 
 
