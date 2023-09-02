@@ -191,4 +191,4 @@ def checkCCTPBalances():
                 # print(f"Error occurred for {chain} chain: {e}")
 
         # print(output)
-        return output
+    return output
