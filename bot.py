@@ -25,7 +25,7 @@ async def circulatingSupply(update: Update, context: ContextTypes.DEFAULT_TYPE):
     await context.bot.send_message(chat_id=update.effective_chat.id, text=checkCirculatingSupply())
 
 async def cctp(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    await context.bot.send_message(chat_id=update.effective_chat.id, text=checkCCTPBalances)
+    await context.bot.send_message(chat_id=update.effective_chat.id, text=checkCCTPBalances())
 
 if __name__ == '__main__':
     application = ApplicationBuilder().token('6238485166:AAHY3jVaTFFi4uBa5j5ZD58IyGygsYkeD44').build()
