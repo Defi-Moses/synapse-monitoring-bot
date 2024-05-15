@@ -155,8 +155,8 @@ def checkCirculatingSupply():
             # print(f"Error occurred for {chain} chain: {e}")
         totalSupply += chainSupply
 
-    print(output)
-    return f"Total SYN circulating supply on 19 Chains {totalSupply}"
+    # print(output)
+    return f"Total SYN circulating supply on 19 Chains {totalSupply} \n {output}"
 
 
 def checkCCTPBalances():
