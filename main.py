@@ -133,6 +133,7 @@ def checkCirculatingSupply():
         rpc_url = chains[chain]['url']
         contract_address = chains[chain]['minichef']
         syn_address = chains[chain]['syn']
+        chainSupply = 0  # Initialize chainSupply for each iteration
 
         try:
             data ='0x18160ddd' + syn_address[2:].zfill(64)
@@ -140,23 +141,13 @@ def checkCirculatingSupply():
             chainSupply = round(int(response["result"],16)/(10**18),2)
             supply_info = f"SYN balance on {chain}: {chainSupply} \n"
             output += supply_info  # Append the miniChef info to the output string
-
-            #old logic (for debugging)
-            # print(f"Gas amount for {chain} chain: {gas_amount}")
-            # results.append({
-            #     'chain': chain,
-            #     'gas_amount': gas_amount
-            # })
         except Exception as e:
             error_info = f"Error occurred on {chain} : {e}\n"
             output += error_info  # Append the error info to the output string
+        
+        totalSupply += chainSupply  # Add to totalSupply regardless of success or failure
 
-            #old logic (for debugging)
-            # print(f"Error occurred for {chain} chain: {e}")
-        totalSupply += chainSupply
-
-    # print(output)
-    return f"Total SYN circulating supply on 19 Chains {totalSupply} \n {output}"
+    return f"Total SYN circulating supply on {len(chains)} Chains: {totalSupply} \n {output}"
 
 
 def checkCCTPBalances():
