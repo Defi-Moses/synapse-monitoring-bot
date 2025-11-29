@@ -43,8 +43,29 @@ async def error_handler(update: object, context: ContextTypes.DEFAULT_TYPE) -> N
     # Log other errors normally
     logging.error(f"Update {update} caused error {error}", exc_info=error)
 
+async def post_init(application):
+    """Set bot description and short description on startup."""
+    try:
+        short_desc = "Monitor Synapse Protocol infrastructure across 20+ chains"
+        full_desc = """Monitor Synapse Protocol infrastructure across 20+ blockchain networks.
+
+Commands:
+/balance - Check gas balances on bridge contracts
+/rewards - Check SYN token balances in MiniChef
+/executor - Check executor gas balances
+/circulatingSupply - Check total SYN circulating supply
+/cctp - Check CCTP relayer gas balances
+
+Monitors: Arbitrum, Aurora, Avalanche, Base, Blast, Boba, BSC, Canto, Cronos, DFK, Dogechain, Ethereum, Fantom, Harmony, Klaytn, Metis, Moonriver, Moonbeam, Optimism, Polygon"""
+        
+        await application.bot.set_my_short_description(short_description=short_desc)
+        await application.bot.set_my_description(description=full_desc)
+        logging.info("Bot description updated successfully")
+    except Exception as e:
+        logging.warning(f"Could not set bot description: {e}")
+
 if __name__ == '__main__':
-    application = ApplicationBuilder().token('6238485166:AAHY3jVaTFFi4uBa5j5ZD58IyGygsYkeD44').build()
+    application = ApplicationBuilder().token('6238485166:AAHY3jVaTFFi4uBa5j5ZD58IyGygsYkeD44').post_init(post_init).build()
     
     # Add error handler
     application.add_error_handler(error_handler)
