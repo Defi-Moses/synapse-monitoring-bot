@@ -45,8 +45,16 @@ source myenv/bin/activate  # On Windows: myenv\Scripts\activate
 pip install -r requirements.txt
 ```
 
-4. Configure your Telegram bot token in `bot.py`:
-   - Replace the token in line 31 with your own bot token from BotFather
+4. Set up environment variables:
+   - Copy `.env.example` to `.env`:
+     ```bash
+     cp .env.example .env
+     ```
+   - Edit `.env` and add your Telegram bot token:
+     ```
+     TELEGRAM_BOT_TOKEN=your_bot_token_here
+     ```
+   - Get your bot token from [@BotFather](https://t.me/botfather) on Telegram
 
 ## Configuration
 
@@ -99,10 +107,16 @@ python bot.py
 
 ## Deployment
 
-The bot can be deployed to Heroku using the included `Procfile`. Make sure to:
+The bot can be deployed to Railway, Heroku, or other platforms. Make sure to:
 
-1. Set your Telegram bot token as an environment variable (recommended) or update `bot.py`
-2. Deploy using Heroku CLI or GitHub integration
+1. **Set the `TELEGRAM_BOT_TOKEN` environment variable** in your deployment platform:
+   - **Railway**: Go to your project → Variables → Add `TELEGRAM_BOT_TOKEN` with your bot token
+   - **Heroku**: Use `heroku config:set TELEGRAM_BOT_TOKEN=your_token_here`
+   - **Other platforms**: Set the environment variable according to their documentation
+
+2. Deploy using the platform's CLI or GitHub integration
+
+**Important**: Never commit your bot token to the repository. Always use environment variables.
 
 ## Dependencies
 

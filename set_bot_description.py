@@ -1,9 +1,21 @@
 #!/usr/bin/env python3
 """Script to set the Telegram bot description."""
 import asyncio
+import os
 from telegram import Bot
 
-BOT_TOKEN = '6238485166:AAHY3jVaTFFi4uBa5j5ZD58IyGygsYkeD44'
+# Load environment variables from .env file if it exists (for local development)
+try:
+    from dotenv import load_dotenv
+    load_dotenv()
+except ImportError:
+    # python-dotenv not installed, skip loading .env file
+    pass
+
+# Get bot token from environment variable
+BOT_TOKEN = os.getenv('TELEGRAM_BOT_TOKEN')
+if not BOT_TOKEN:
+    raise ValueError("TELEGRAM_BOT_TOKEN environment variable is not set")
 
 # Short description (shown in chat list and bot profile)
 SHORT_DESCRIPTION = "Monitor Synapse Protocol infrastructure across 20+ chains"

@@ -1,8 +1,17 @@
 import logging
+import os
 from telegram import Update
 from telegram.error import Conflict
 from telegram.ext import ApplicationBuilder, ContextTypes, CommandHandler
 from main import checkGasBalances, checkMiniChefBalances, checkExecutorBalances, checkCirculatingSupply, checkCCTPBalances
+
+# Load environment variables from .env file if it exists (for local development)
+try:
+    from dotenv import load_dotenv
+    load_dotenv()
+except ImportError:
+    # python-dotenv not installed, skip loading .env file
+    pass
 
 # Configure logging - suppress httpx INFO messages to reduce noise
 logging.basicConfig(
@@ -65,7 +74,12 @@ Monitors: Arbitrum, Aurora, Avalanche, Base, Blast, Boba, BSC, Canto, Cronos, DF
         logging.warning(f"Could not set bot description: {e}")
 
 if __name__ == '__main__':
-    application = ApplicationBuilder().token('6238485166:AAHY3jVaTFFi4uBa5j5ZD58IyGygsYkeD44').post_init(post_init).build()
+    # Get bot token from environment variable
+    bot_token = os.getenv('TELEGRAM_BOT_TOKEN')
+    if not bot_token:
+        raise ValueError("TELEGRAM_BOT_TOKEN environment variable is not set")
+    
+    application = ApplicationBuilder().token(bot_token).post_init(post_init).build()
     
     # Add error handler
     application.add_error_handler(error_handler)
